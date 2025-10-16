@@ -1,0 +1,26 @@
+name: Super-Linter
+
+# Trigger the workflow on pull requests
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  super-lint:
+    name: Run Super-Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository so the linter can access files
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Run the Super-Linter
+      - name: Lint Code Base
+        uses: github/super-linter@v5
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # You can enable or disable specific linters if needed
+          VALIDATE_ALL_CODEBASE: true
+          LINTER_RULES_PATH: .github/linters
