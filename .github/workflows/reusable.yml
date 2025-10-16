@@ -14,7 +14,7 @@ on:
 
 jobs:
   reusable-job:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted              ## use ubuntu-latest if runner isn't set up
     outputs:
       current-time: ${{ steps.time.outputs.current-time }}
     steps:
